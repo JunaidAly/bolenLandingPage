@@ -1,0 +1,512 @@
+/* Belon marketing — premium visual layer. Scoped under .belon-landing. CSS-only motion. */
+
+.belon-landing {
+  --belon-base: #080808;
+  --belon-alt: #111111;
+  --belon-card: rgba(255, 255, 255, 0.02);
+  --belon-accent: #f97316;
+  --belon-accent-2: #ea580c;
+  --belon-body: #94a3b8;
+  --belon-muted: #64748b;
+  font-family: 'Sora', system-ui, sans-serif;
+  background: var(--belon-base);
+  color: #ffffff;
+  min-height: 100%;
+  position: relative;
+}
+
+.belon-landing a[href^='#'] {
+  scroll-behavior: smooth;
+}
+
+/* —— Atmosphere (fixed layers) —— */
+.belon-atmosphere {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.belon-glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+}
+
+.belon-glow--blue {
+  width: min(140vw, 1200px);
+  height: min(90vh, 800px);
+  left: 50%;
+  top: -35%;
+  transform: translateX(-50%);
+  background: rgba(249, 115, 22, 0.15);
+}
+
+.belon-glow--violet {
+  width: min(80vw, 640px);
+  height: min(70vh, 600px);
+  right: -15%;
+  top: 15%;
+  background: rgba(234, 88, 12, 0.1);
+  filter: blur(100px);
+}
+
+.belon-dot-grid {
+  position: absolute;
+  inset: 0;
+  opacity: 1;
+  background-image: radial-gradient(circle at center, rgba(255, 255, 255, 0.031) 0 1px, transparent 1.5px);
+  background-size: 24px 24px;
+}
+
+.belon-landing-inner {
+  position: relative;
+  z-index: 1;
+}
+
+/* —— Section rhythm —— */
+.belon-section {
+  padding-top: 60px;
+  padding-bottom: 60px;
+}
+
+@media (min-width: 1024px) {
+  .belon-section {
+    padding-top: 120px;
+    padding-bottom: 120px;
+  }
+}
+
+.belon-container {
+  width: 100%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+@media (min-width: 640px) {
+  .belon-container {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+/* —— Typography utilities —— */
+.belon-body {
+  color: var(--belon-body);
+}
+
+.belon-muted {
+  color: var(--belon-muted);
+}
+
+.belon-text-gradient {
+  background: linear-gradient(90deg, #f97316 0%, #ea580c 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.belon-gradient-word {
+  position: relative;
+  display: inline-block;
+}
+
+.belon-gradient-word::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  height: 2px;
+  width: 100%;
+  border-radius: 2px;
+  background: linear-gradient(90deg, #f97316, #fb923c);
+  transform: scaleX(0);
+  transform-origin: left;
+  animation: belon-underline-draw 1.15s ease 0.35s forwards;
+}
+
+@keyframes belon-underline-draw {
+  to {
+    transform: scaleX(1);
+  }
+}
+
+/* —— Hero badge —— */
+.belon-hero-badge {
+  border: 1px solid rgba(249, 115, 22, 0.3);
+  background: rgba(249, 115, 22, 0.08);
+  animation: belon-badge-pulse 3.5s ease-in-out infinite;
+}
+
+@keyframes belon-badge-pulse {
+  0%,
+  100% {
+    border-color: rgba(249, 115, 22, 0.25);
+    box-shadow: 0 0 0 0 rgba(249, 115, 22, 0);
+  }
+  50% {
+    border-color: rgba(249, 115, 22, 0.55);
+    box-shadow: 0 0 24px rgba(249, 115, 22, 0.12);
+  }
+}
+
+/* —— Hero floating nodes (8px) —— */
+@keyframes belon-node-drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(8px, -10px, 0);
+  }
+}
+
+@keyframes belon-hero-line-dash {
+  to {
+    stroke-dashoffset: -80;
+  }
+}
+
+.belon-hero-canvas {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.belon-hero-canvas svg {
+  width: 100%;
+  height: 100%;
+}
+
+.belon-hero-node-sm {
+  animation: belon-node-drift 6s ease-in-out infinite;
+}
+
+.belon-hero-line-sm {
+  stroke: rgba(249, 115, 22, 0.125);
+  stroke-dasharray: 6 10;
+  animation: belon-hero-line-dash 22s linear infinite;
+}
+
+/* —— Cards —— */
+.belon-card {
+  border-radius: 16px;
+  background: var(--belon-card);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  transition:
+    border-color 300ms ease,
+    background-color 300ms ease,
+    transform 300ms ease,
+    box-shadow 300ms ease;
+}
+
+.belon-card:hover {
+  border-color: rgba(249, 115, 22, 0.3);
+  background: rgba(249, 115, 22, 0.04);
+  transform: translateY(-4px);
+  box-shadow: 0 20px 50px -24px rgba(249, 115, 22, 0.25);
+}
+
+.belon-icon-tile {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(249, 115, 22, 0.15);
+  color: #f97316;
+  flex-shrink: 0;
+}
+
+/* —— Buttons —— */
+.belon-btn {
+  transition:
+    transform 200ms ease,
+    box-shadow 250ms ease,
+    background-color 200ms ease,
+    border-color 200ms ease,
+    opacity 200ms ease;
+}
+
+.belon-btn:hover {
+  transform: scale(1.02);
+}
+
+.belon-btn:active {
+  transform: scale(0.97);
+}
+
+.belon-cta-primary {
+  background: #f97316;
+  box-shadow: 0 0 20px rgba(249, 115, 22, 0.4);
+}
+
+.belon-cta-primary:hover {
+  background: #ea580c;
+  box-shadow: 0 0 28px rgba(249, 115, 22, 0.55);
+}
+
+/* —— Nav links —— */
+.belon-nav-link {
+  color: #64748b;
+  position: relative;
+  transition: color 200ms ease;
+}
+
+.belon-nav-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 100%;
+  height: 1px;
+  background: #fff;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 200ms ease;
+}
+
+.belon-nav-link:hover {
+  color: #fff;
+}
+
+.belon-nav-link:hover::after {
+  transform: scaleX(1);
+}
+
+/* —— Stat numbers gradient —— */
+.belon-stat-num {
+  background: linear-gradient(180deg, #fb923c 0%, #f97316 50%, #ea580c 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* —— Workflow pipeline —— */
+.belon-wf-node {
+  width: 120px;
+  height: 80px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 8px;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.25;
+  color: rgba(248, 250, 252, 0.92);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-left-width: 3px;
+}
+
+.belon-wf-node--blue {
+  border-left-color: #f97316;
+}
+.belon-wf-node--violet {
+  border-left-color: #ea580c;
+}
+.belon-wf-node--cyan {
+  border-left-color: #fb923c;
+}
+.belon-wf-node--amber {
+  border-left-color: #fdba74;
+}
+.belon-wf-node--green {
+  border-left-color: #c2410c;
+}
+.belon-wf-node--orange {
+  border-left-color: #f97316;
+}
+
+.belon-wf-connector-h {
+  position: relative;
+  width: 40px;
+  height: 0;
+  flex-shrink: 0;
+  align-self: center;
+  border-top: 2px dashed rgba(249, 115, 22, 0.22);
+}
+
+.belon-wf-connector-h::after {
+  content: '';
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #f97316;
+  top: -4px;
+  left: 0;
+  box-shadow: 0 0 10px rgba(249, 115, 22, 0.7);
+  animation: belon-dot-x 2.2s linear infinite;
+}
+
+@keyframes belon-dot-x {
+  0% {
+    left: 0;
+  }
+  100% {
+    left: calc(100% - 6px);
+  }
+}
+
+.belon-wf-connector-v {
+  position: relative;
+  width: 0;
+  height: 32px;
+  margin: 0 auto;
+  border-left: 2px dashed rgba(249, 115, 22, 0.22);
+}
+
+.belon-wf-connector-v::after {
+  content: '';
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #f97316;
+  left: -4px;
+  top: 0;
+  box-shadow: 0 0 10px rgba(249, 115, 22, 0.7);
+  animation: belon-dot-y 2.2s linear infinite;
+}
+
+@keyframes belon-dot-y {
+  0% {
+    top: 0;
+  }
+  100% {
+    top: calc(100% - 6px);
+  }
+}
+
+/* —— Gauge —— */
+@keyframes belon-gauge-fill {
+  from {
+    stroke-dashoffset: 283;
+  }
+  to {
+    stroke-dashoffset: 2.83;
+  }
+}
+
+.belon-gauge-ring.is-visible {
+  animation: belon-gauge-fill 1.8s ease-out forwards;
+}
+
+.belon-gauge-ring {
+  stroke-dasharray: 283;
+  stroke-dashoffset: 283;
+}
+
+.belon-gauge-halo {
+  filter: drop-shadow(0 0 20px rgba(249, 115, 22, 0.35)) drop-shadow(0 0 36px rgba(234, 88, 12, 0.2));
+}
+
+/* —— Marquee —— */
+.belon-marquee-mask {
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+}
+
+.belon-marquee-row:hover .belon-marquee-track,
+.belon-marquee-row:hover .belon-marquee-track--rev {
+  animation-play-state: paused;
+}
+
+@keyframes belon-marquee-ltr {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.belon-marquee-track {
+  display: flex;
+  width: max-content;
+  gap: 12px;
+  padding-right: 12px;
+  animation: belon-marquee-ltr 45s linear infinite;
+  will-change: transform;
+}
+
+.belon-marquee-track--rev {
+  animation: belon-marquee-ltr 52s linear infinite reverse;
+}
+
+.belon-marquee-pill {
+  flex-shrink: 0;
+  padding: 12px 24px;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: 14px;
+  font-weight: 500;
+  color: rgba(248, 250, 252, 0.85);
+}
+
+/* —— Waitlist orb —— */
+.belon-waitlist-orb {
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: rgba(249, 115, 22, 0.08);
+  filter: blur(100px);
+  pointer-events: none;
+}
+
+/* —— Success check —— */
+@keyframes belon-check-pop {
+  0% {
+    transform: scale(0.6);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.08);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.belon-success-icon {
+  animation: belon-check-pop 0.5s ease forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .belon-marquee-track,
+  .belon-marquee-track--rev,
+  .belon-hero-node-sm,
+  .belon-hero-line-sm,
+  .belon-hero-badge,
+  .belon-gradient-word::after,
+  .belon-wf-connector-h::after,
+  .belon-wf-connector-v::after,
+  .belon-gauge-ring,
+  .belon-success-icon {
+    animation: none !important;
+  }
+
+  .belon-gradient-word::after {
+    transform: scaleX(1);
+  }
+
+  .belon-gauge-ring.is-visible {
+    stroke-dashoffset: 2.83;
+  }
+}
